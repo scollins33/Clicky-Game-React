@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.row, .column, .container {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.split {
+    justify-content: space-between;
+}
+
+.y-center {
+    align-items: center;
+}

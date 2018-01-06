@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/gameboard.css";
 
+import Scoreboard from "./scoreboard";
 import Tile from "./tile";
 
 class Gameboard extends Component {
@@ -9,8 +10,10 @@ class Gameboard extends Component {
         super();
 
         this.state = {
+            status: "Game started",
             currentScore: 0,
             clickedIDs: [],
+            cards: this.buildCards(),
         };
     }
 
@@ -19,40 +22,71 @@ class Gameboard extends Component {
         let cards = [];
 
         for (let i = 0; i < 12; i++) {
-            const thisCard = <Tile id={i} image={`some image ${i}`} num={i} cb={this.checkCard.bind(this)}/>;
+            const thisCard = <Tile key={i} id={i} image={`some image ${i}`} num={i} onClick={this.checkCard}/>;
             cards.push(thisCard);
         }
 
         return cards;
     }
 
-    // callback to check if the card has been clicked
-    checkCard (pID) {
-        console.log(`checking Card ${pID}`);
-        console.log(this.state.currentScore);
-        console.log(this.state.clickedIDs);
+    shuffleCards () {
+        let currentOrder = this.state.cards.slice();
+        let maxIndex = currentOrder.length - 1;
+        let newOrder = [];
+        let randLoc;
 
-        if (this.state.clickedIDs.includes(pID)) {
-            // lose the game
-            console.log('you lose');
+        while (maxIndex > -1) {
+            // generate random location
+            randLoc = Math.floor(Math.random() * maxIndex);
+
+            // insert that random location in Current Order and place it into our new Array
+            newOrder.push(currentOrder[randLoc]);
+
+            // remove placed obj and decrement
+            currentOrder.splice(randLoc, 1);
+            maxIndex--;
+        }
+
+        return newOrder;
+    }
+
+    // callback to check if the card has been clicked
+    checkCard = event => {
+
+        if (this.state.clickedIDs.includes(event.target.id)) {
+            // lose the game and reset the board
+            this.setState({
+                status: "Oh no, you clicked one you had already clicked! You lose!",
+            });
         } else {
             // increase score and add to the clicked IDs
             // cards should get reshuffled by buildCards on new render() when setState is called
+            this.state.clickedIDs.push(event.target.id);
 
-            this.state.clickedIDs.push(pID);
-            this.setState({ currentScore: this.state.currentScore + 1 });
+            this.setState({
+                status: "Nice! You clicked a valid card!",
+                currentScore: this.state.currentScore + 1,
+                cards: this.shuffleCards(),
+            });
+
+            // this.shuffleCards();
         }
     };
 
     // render the cards and any game info
     render () {
-        const testText = <div className={"container"}>
-                            <h1 className={"headliner"}>Current Score: {this.state.currentScore}</h1>
-                            <h1 className={"headliner"}>Clicked Cards: {this.state.clickedIDs.join(` `)}</h1>
-                        </div>;
-        const newCards = this.buildCards();
+        return (
+            <div>
+                <Scoreboard
+                    status={this.state.status}
+                    score={this.state.currentScore}
+                    clicked={this.state.clickedIDs}
+                />
 
-        return [testText, newCards];
+                <div className={"playArea"}>
+                    {this.state.cards}
+                </div>
+            </div>);
     }
 }
 

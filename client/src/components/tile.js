@@ -2,8 +2,8 @@ import React from "react";
 import "../styles/tile.css";
 
 const Tile = props => (
-    <div className={"tile split"} {...props}>
-        <img src={props.image} alt="tile"/>
+    <div className={"tile"}>
+        <img src={props.image} alt="tile" {...props}/>
     </div>
 );
 

@@ -26,3 +26,7 @@ body {
 .y-center {
     align-items: center;
 }
+
+.x-center {
+    text-align: center;
+}

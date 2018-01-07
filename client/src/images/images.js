@@ -1,15 +1,15 @@
-import char1 from "./char1.png";
-import char2 from "./char2.png";
-import char3 from "./char3.png";
-import char4 from "./char4.png";
-import char5 from "./char5.png";
-import char6 from "./char6.png";
-import char7 from "./char7.png";
-import char8 from "./char8.png";
-import char9 from "./char9.png";
-import char10 from "./char10.png";
-import char11 from "./char11.png";
-import char12 from "./char12.png";
+import char1 from "./char1.jpg";
+import char2 from "./char2.jpg";
+import char3 from "./char3.jpg";
+import char4 from "./char4.jpg";
+import char5 from "./char5.jpg";
+import char6 from "./char6.jpg";
+import char7 from "./char7.jpg";
+import char8 from "./char8.jpg";
+import char9 from "./char9.jpg";
+import char10 from "./char10.jpg";
+import char11 from "./char11.jpg";
+import char12 from "./char12.jpg";
 
 
 const images = [

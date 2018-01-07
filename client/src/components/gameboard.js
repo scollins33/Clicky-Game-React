@@ -24,9 +24,7 @@ class Gameboard extends Component {
         let cards = [];
 
         Images.map((src, i) => {
-            console.log(src);
-            console.log(i);
-            cards.push(<Tile key={i} id={i} image={src} onClick={this.checkCard}/>);
+            return cards.push(<Tile key={i} id={i} image={src} onClick={this.checkCard}/>);
         });
 
         return cards;
@@ -54,7 +52,7 @@ class Gameboard extends Component {
         } else {
             // increase score and add to the clicked IDs
             this.state.clickedIDs.push(event.target.id);
-            this.shuffleCards();
+            // this.shuffleCards();
 
             this.setState({
                 status: "Nice! You clicked a valid card!",
@@ -62,7 +60,7 @@ class Gameboard extends Component {
                 highScore: this.checkHighScore(),
             });
 
-            // this.shuffleCards();
+            this.shuffleCards();
         }
     };
 
@@ -76,7 +74,7 @@ class Gameboard extends Component {
                     high={this.state.highScore}
                 />
 
-                <div className={"playArea"}>
+                <div className={"playArea split"}>
                     {this.state.cards}
                 </div>
             </div>);

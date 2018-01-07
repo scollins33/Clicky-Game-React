@@ -1,8 +1,11 @@
 .tile {
-    height: 150px;
-    width: 150px;
     background-color: #000000;
     color: #00ffbc;
-    float: left;
-    margin: 10px;
+    margin: 15px 0;
+    border: solid black 3px;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
 }

@@ -1,3 +1,9 @@
 .playArea {
     padding: 1% 5%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.playArea > .tile {
+    flex-basis: 15%;
 }

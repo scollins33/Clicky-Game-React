@@ -5,7 +5,7 @@ const Scoreboard = props => (
     <div className="row split y-center scoreboard">
         <span>Status: {props.status}</span>
         <span>Score: {props.score}</span>
-        <span>Clicked: {props.clicked.join(' ')}</span>
+        <span>High Score: {props.high}</span>
     </div>
 );
 
